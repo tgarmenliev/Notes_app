@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">to_do_app</string>
+    <string name="homescreen">Homescreen</string>
+    <string name="pass_hint">Password</string>
+    <string name="empty_password_error">Please provide a password</string>
+    <string name="invalid_password_error">Invalid password</string>
+</resources>
