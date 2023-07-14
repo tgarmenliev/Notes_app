@@ -1,3 +1,4 @@
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 
@@ -8,9 +9,9 @@ class AuthViewModel : ViewModel() {
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Registration success
+                    println("Registration success")
                 } else {
-                    // Registration failed
+                    println("Registration failed")
                 }
             }
     }
@@ -19,9 +20,9 @@ class AuthViewModel : ViewModel() {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Login success
+                    println("Login success")
                 } else {
-                    // Login failed
+                    println("Login failed")
                 }
             }
     }

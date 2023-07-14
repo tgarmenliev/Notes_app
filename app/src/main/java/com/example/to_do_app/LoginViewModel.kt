@@ -1,8 +1,9 @@
 package com.example.to_do_app
 
+import AuthViewModel
 import androidx.lifecycle.ViewModel
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(private val authViewModel: AuthViewModel) : ViewModel() {
     private var emailText: String = ""
     private var passwordText: String = ""
 
@@ -15,14 +16,6 @@ class LoginViewModel : ViewModel() {
     }
 
     fun login() {
-        // Implement your login logic here using Firebase Authentication
-        /*FirebaseAuth.getInstance().signInWithEmailAndPassword(emailText, passwordText)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    // Login success
-                } else {
-                    // Login failed
-                }
-            }*/
+        authViewModel.loginUser(emailText, passwordText)
     }
 }
