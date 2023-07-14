@@ -1,5 +1,6 @@
 package com.example.to_do_app.ui.homescreen
 
+import AuthViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.to_do_app.LoginViewModel
 import com.example.to_do_app.R
+import com.example.to_do_app.RegistrationViewModel
 import com.example.to_do_app.ui.add.AddNotes
 import com.example.to_do_app.ui.list.Notes
 import com.example.to_do_app.ui.login.Login
@@ -34,19 +36,22 @@ import com.example.to_do_app.ui.theme.buttonEnabled
 @Composable
 fun NavigationView() {
     val navController = rememberNavController()
-    var LoginViewModel = LoginViewModel()
+    val authViewModel = AuthViewModel()
+    val loginViewModel = LoginViewModel(authViewModel)
+    var registrationViewModel = RegistrationViewModel(authViewModel)
     NavHost(navController = navController, startDestination = "home") {
         composable("home") {
             Home(navController)
         }
         composable("login") {
             Login(
-                viewModel = LoginViewModel,
+                viewModel = loginViewModel,
                 button = { navController.navigate("notes") }
             )
         }
         composable("registration") {
             Registration(
+                registrationViewModel = registrationViewModel,
                 button = { navController.navigate("notes") }
             )
         }

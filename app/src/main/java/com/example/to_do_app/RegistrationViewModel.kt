@@ -10,18 +10,6 @@ class RegistrationViewModel(private val authViewModel: AuthViewModel) : ViewMode
     var email: String = ""
     var password: String = ""
 
-    fun setName(name: String) {
-        this.name = name
-    }
-
-    fun setEmail(email: String) {
-        this.email = email
-    }
-
-    fun setPassword(password: String) {
-        this.password = password
-    }
-
     fun registerUser() {
         authViewModel.registerUser(email, password)
     }

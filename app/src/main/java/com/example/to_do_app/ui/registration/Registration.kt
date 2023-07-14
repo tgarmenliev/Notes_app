@@ -1,5 +1,6 @@
 package com.example.to_do_app.ui.registration
 
+import AuthViewModel
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -46,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.to_do_app.R
+import com.example.to_do_app.RegistrationViewModel
 import com.example.to_do_app.rememberImeState
 import com.example.to_do_app.ui.theme.buttonEnabled
 import com.example.to_do_app.ui.theme.greenCorrect
@@ -55,7 +57,7 @@ import com.example.to_do_app.ui.theme.themeBackground
 
 
 @Composable
-fun Registration(button: () -> Unit, modifier: Modifier = Modifier) {
+fun Registration(registrationViewModel: RegistrationViewModel, button: () -> Unit, modifier: Modifier = Modifier) {
 
     var nameText by rememberSaveable { mutableStateOf("") }
     var showNameError by remember { mutableStateOf(false) }
@@ -249,9 +251,17 @@ fun Registration(button: () -> Unit, modifier: Modifier = Modifier) {
             }
         )
 
+        registrationViewModel.email = emailText
+        registrationViewModel.password = passwordText
+        registrationViewModel.name = nameText
+
 
         Button(
-            onClick = button,
+            onClick = { button()
+                if(enabledMail && enabledPass && enabledName && enabledRepass) {
+                    registrationViewModel.registerUser()
+                }
+            },
             modifier = Modifier
                 .padding(horizontal = 40.dp)
                 .constrainAs(registration) {
